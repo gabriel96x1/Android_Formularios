@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Android_Formularios</string>
+    <string name="name">Name</string>
+    <string name="email">E-Mail</string>
+    <string name="date">Birth Date</string>
+    <string name="phone">Phone Number</string>
+    <string name="desc">Description</string>
+    <string name="btnNext">Next</string>
+    <string name="confData">Confirm Data</string>
+    <string name="ediData">Edit Data</string>
+</resources>
