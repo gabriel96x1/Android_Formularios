@@ -4,13 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 public class ConfirmData extends AppCompatActivity {
-    private TextView name,phone,email,desc;
-    private Button btnEdit;
+    TextView name,phone,email,desc,date;
+    Button btnEdit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,30 +19,38 @@ public class ConfirmData extends AppCompatActivity {
         String Phone = getIntent().getExtras().getString("Phone");
         String Email = getIntent().getExtras().getString("Email");
         String Desc = getIntent().getExtras().getString("Desc");
+        String Date = getIntent().getExtras().getString("Date");
 
         name    = (TextView) findViewById(R.id.confName);
+        date    = (TextView) findViewById(R.id.confDate);
         phone   = (TextView) findViewById(R.id.confPhone);
         email   = (TextView) findViewById(R.id.confEmail);
         desc    = (TextView) findViewById(R.id.confDesc);
         btnEdit = (Button) findViewById(R.id.editData);
 
         name.setText(Name);
-        phone.setText(Phone);
+        date.setText(getString(R.string.date)+Date);
+        phone.setText(getString(R.string.phone)+Phone);
+        email.setText(getString(R.string.email)+Email);
+        desc.setText(getString(R.string.desc)+Desc);
+
 
         btnEdit.setOnClickListener(v -> {
-                String Names = name.getText().toString();
-                String Phones = phone.getText().toString();
-                String Emails = email.getText().toString();
-                String Descs = desc.getText().toString();
                 Intent intent = new Intent(ConfirmData.this, MainActivity.class);
-                intent.putExtra("Name", Names);
-                intent.putExtra("Phone", Phones);
-                intent.putExtra("Email", Emails);
-                intent.putExtra("Desc", Descs);
+                intent.putExtra("Name", Name);
+                intent.putExtra("Phone", Phone);
+                intent.putExtra("Email", Email);
+                intent.putExtra("Desc", Desc);
+                intent.putExtra("Date",Date);
+                startActivity(intent);
+                finish();
 
         });
+
     }
-
-
-
+    public void onBackPressed(){
+        Intent intent = new Intent(ConfirmData.this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
 }
